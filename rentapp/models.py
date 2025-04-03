@@ -33,4 +33,3 @@ class ApartmentPost(Post):
     @classmethod
     def get_apartments(cls):
         return cls.objects.filter(category=Category.APARTMENTS)
-

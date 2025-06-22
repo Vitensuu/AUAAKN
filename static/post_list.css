@@ -1,0 +1,312 @@
+/* Стили для секции фильтров */
+
+.properties-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.date {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.header-actions .notification {
+    background-color: #f0f0f0;
+    color: #777;
+    border-radius: 5px;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: none; /* Убирает стандартные стрелки браузера */
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+}
+
+.select-wrapper i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none; /* Чтобы клики проходили сквозь и попадали на select */
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.checkbox-group label {
+    color: #333;
+    font-size: 16px;
+}
+
+/* Стили для range slider (может потребоваться дополнительная стилизация) */
+.range-slider {
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+
+.range-slider input[type="range"] {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    height: 5px;
+    background: #d3d3d3;
+    border-radius: 5px;
+    outline: none;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #797db0;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.range-values {
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.area-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.area-inputs input[type="number"] {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+.properties-section {
+    padding: 20px;
+    background-color: #f9f9f9; /* Необязательный фон для секции */
+    border-radius: 8px; /* Необязательное скругление углов */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.properties-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Автоматическое размещение колонок */
+    gap: 20px; /* Расстояние между карточками */
+}
+
+.property-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Чтобы border-radius работал и для изображения */
+}
+
+.property-card img {
+    width: auto;
+    height: auto;
+    display: block; /* Убирает лишнее пространство под изображением */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    object-fit: cover; /* Чтобы изображение корректно масштабировалось */
+    aspect-ratio: 16 / 9; /* Соотношение сторон изображения (примерное) */
+}
+
+.property-details {
+    padding: 15px;
+}
+
+.property-details h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.property-details .price {
+    font-weight: bold;
+    color: #797db0;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.property-details .address {
+    color: #777;
+    font-size: 14px;
+}
+a{
+    text-decoration: none;
+}
+
+.filters-section {
+    background-color: #eff3f6; /* Фильтрлер секциясы үшін ашық көкшіл фон */
+    padding: 30px; /* Ішкі шегініс */
+    border-radius: 10px; /* Дөңгелектелген бұрыштар */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Жұмсақ көлеңке */
+    max-width: 900px; /* Максималды ені */
+    margin: 20px auto; /* Ортаға туралау және жоғарғы/төменгі аралық */
+    display: flex;
+    flex-direction: column; /* Элементтерді тігінен орналастыру */
+    align-items: center; /* Элементтерді ортаға туралау */
+}
+
+.filter-header {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50; /* Қою сұр түс */
+    margin-bottom: 25px; /* Төменгі аралық */
+    text-align: center;
+}
+
+/* Filter Form - форманың өзі */
+.filter-form {
+    display: grid; /* Grid макетін қолдану */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Ыңғайлы тор, кішірек экрандарда бір баған */
+    gap: 20px; /* Элементтер арасындағы аралық */
+    width: 100%; /* Толық ені */
+}
+
+.filter-form label {
+    display: flex;
+    flex-direction: column; /* Жазылым мен енгізу өрісін тігінен орналастыру */
+    font-size: 14px;
+    color: #555; /* Сұр түс */
+    font-weight: 600; /* Жартылай қалың шрифт */
+}
+
+.filter-form input[type="number"],
+.filter-form select {
+    padding: 5px 6px; /* Ішкі шегініс */
+    border: 1px solid #ccc; /* Жұқа сұр шекара */
+    border-radius: 5px; /* Аздап дөңгелектелген бұрыштар */
+    font-size: 15px;
+    margin-top: 8px; /* Жазылымнан төменгі аралық */
+    outline: none; /* Фокустау кезіндегі әдепкі көк шекараны алып тастау */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Ауысу эффектісі */
+    width: calc(100% - 24px); /* Padding-ті ескере отырып, толық ені */
+    box-sizing: border-box; /* Padding және border енге қосылады */
+}
+zz
+.filter-form input[type="number"]:focus,
+.filter-form select:focus {
+    border-color: #ad44a4; /* Фокустау кезінде күлгін шекара */
+    box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.2); /* Фокустау кезінде жұмсақ көлеңке */
+}
+
+/* Only with Image checkbox */
+.filter-form label:last-of-type { /* Соңғы label, ол 'Only with Image' үшін */
+    flex-direction: row; /* Мәтін мен чекбоксты көлденең орналастыру */
+    align-items: center; /* Ортаға туралау */
+    grid-column: 1 / -1; /* Толық енді алу */
+    margin-top: 10px; /* Жоғарғы аралық */
+}
+
+.filter-form input[type="checkbox"] {
+    margin-right: 8px; /* Чекбокс пен мәтін арасындағы аралық */
+    transform: scale(1.1); /* Чекбоксты аздап үлкейту */
+    accent-color: #8e44ad; /* Чекбокстың түсін өзгерту (заманауи браузерлерде) */
+}
+
+/* Search button */
+.filter-form button[type="submit"] {
+    grid-column: 1 / -1; /* Толық енді алу */
+    background-color: #8e44ad; /* Күлгін фон */
+    color: white; /* Ақ мәтін */
+    align-items: center;     /* выравнивание по вертикали */
+    justify-content: center;
+    border: none; /* Шекара жоқ */
+    padding: 6px 25px; /* Ішкі шегініс */
+    border-radius: 5px; /* Дөңгелектелген бұрыштар */
+    cursor: pointer; /* Қол курсоры */
+    font-size: 16px;
+    font-weight: 700; /* Қалың шрифт */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Ауысу эффектісі */
+    margin-top: 20px; /* Жоғарғы аралық */
+    width: 15%; /* Толық ені */
+}
+
+.filter-form button[type="submit"]:hover {
+    background-color: #9b59b6; /* Ховер кезінде ашықтау күлгін */
+    transform: translateY(-2px); /* Батырманың аздап жоғары көтерілу эффектісі */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Ховер кезінде көлеңкені үлкейту */
+}
+
+/* Адаптивтілік (Responsive Design) */
+@media (max-width: 768px) {
+    .filters-section {
+        padding: 20px;
+    }
+    .filter-header {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .filter-form {
+        grid-template-columns: 1fr; /* Кішірек экрандарда бір баған */
+        gap: 15px;
+    }
+    .filter-form input[type="number"],
+    .filter-form select,
+    .filter-form button[type="submit"] {
+        width: 100%; /* Толық ені */
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filters-section {
+        padding: 15px;
+        margin: 10px auto;
+    }
+    .filter-header {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .filter-form label,
+    .filter-form input,
+    .filter-form select,
+    .filter-form button {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}

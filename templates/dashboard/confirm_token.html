@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Top Up{% endblock %}
+{% block content %}
+<h2>Confirmation Token</h2>
+<form method="post">
+  {% csrf_token %}
+  <label>Enter token:</label>
+  <input type="text" name="token" required>
+  <button type="submit">Confirm</button>
+</form>
+
+{% if messages %}
+<ul>
+  {% for message in messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}

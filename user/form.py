@@ -17,7 +17,7 @@ class RegistrationForm(UserCreationForm):
                     user.save()
                 return user
         
-        def clean_password(self):
+        def clean_password2(self):
                pass1 = self.cleaned_data.get('password1')
                pass2 = self.cleaned_data.get('password2')
                if pass1 and pass2 and pass1 != pass2:
@@ -32,14 +32,16 @@ class RegistrationForm(UserCreationForm):
                     raise forms.ValidationError('Password must be at least 8 characters long.')
                return pass2
         
-        def clean_name(self):
-            return self.cleaned_data['first_name']
-        
-        def clean_surname(self):
-            return self.cleaned_data['last_name']
-        
+        def clean_first_name(self):
+          return self.cleaned_data['first_name']
+
+        def clean_last_name(self):
+          return self.cleaned_data['last_name']
+
         def __init__(self, *args, **kwargs):
               super(RegistrationForm, self).__init__(*args, **kwargs)
+              for field in self.fields.values():
+                    field.widget.attrs.update({'class': 'input-style'})
               self.fields['first_name'].widget.attrs['placeholder'] = 'First Name'
               self.fields['last_name'].widget.attrs['placeholder'] = 'Last Name'
               self.fields['email'].widget.attrs['placeholder'] = 'Email'
@@ -62,9 +64,10 @@ class UserLoginForm(forms.Form):
             user = authenticate(email=email, password=password)
             if not user:
                   raise forms.ValidationError('Incorrect email address or password')
+            self.user = user
             return self.cleaned_data
       def __init__(self, *args, **kwargs):
-            super(UserCreationForm, self).__init__(*args, **kwargs)
+            super(UserLoginForm, self).__init__(*args, **kwargs)
             self.fields['email'].widget.attrs['placeholder'] = 'Email'
             self.fields['password'].widget.attrs['placeholder'] = 'Password'
 

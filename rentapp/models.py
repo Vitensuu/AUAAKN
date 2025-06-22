@@ -2,17 +2,56 @@ from django.db import models
 import os
 from django.core.exceptions import ValidationError
 from user.models import User
+from django.db import models
+from django.contrib.auth import get_user_model
+from decimal import Decimal
 
-class Post(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    edited = models.BooleanField(default=False)
+User = get_user_model()
+
+class City(models.Model):
+    name = models.CharField(max_length=100, unique=True, verbose_name="Город")
 
     def __str__(self):
-        return f"{self.title} - {self.price} KZT by {self.author.username} : {self.created_at}"
+        return self.name
+
+
+class Post(models.Model):
+    ROOM_CHOICES = [(i, str(i)) for i in range(1, 11)]
+
+    is_active = models.BooleanField(default=True, verbose_name="Активно")
+    title = models.CharField(max_length=255, verbose_name="Заголовок")
+    description = models.TextField(verbose_name="Описание")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts', verbose_name="Автор")
+    created_at = models.DateTimeField(auto_now_add=True)
+    edited = models.BooleanField(default=False, verbose_name="Отредактировано")
+
+    price_per_month = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена в месяц")
+
+    @property
+    def price_per_day(self):
+        return round(self.price_per_month / Decimal('30.0'), 2)
+
+
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, verbose_name="Город")
+    street_or_district = models.CharField(max_length=255, verbose_name="Улица или микрорайон")
+    house_number = models.CharField(max_length=10, verbose_name="Номер дома")
+    apartment_number = models.CharField(max_length=10, blank=True, null=True, verbose_name="Квартира")
+    intercom_code = models.CharField(max_length=10, blank=True, null=True, verbose_name="Домофон")
+
+    rooms = models.PositiveSmallIntegerField(choices=ROOM_CHOICES, verbose_name="Количество комнат")
+    floor = models.PositiveSmallIntegerField(verbose_name="Этаж")
+    total_floors = models.PositiveSmallIntegerField(verbose_name="Этажей в доме")
+
+    area_total = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Общая площадь (м²)")
+    area_living = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name="Жилая площадь (м²)")
+    area_kitchen = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name="Площадь кухни (м²)")
+
+    
+    latitude = models.FloatField(null=True, blank=True, verbose_name="Широта")
+    longitude = models.FloatField(null=True, blank=True, verbose_name="Долгота")
+
+    def __str__(self):
+        return f"{self.title} - {self.price_per_month} KZT by {self.author.username}"
 
     def average_rating(self):
         ratings = self.ratings.all()
@@ -66,8 +105,8 @@ def validate_image(file):
 class PostAttachment(models.Model):
     name = models.CharField(verbose_name='Image files name', blank=True, null=True)
     file = models.FileField(upload_to='images/', verbose_name='Image', validators=[validate_image])
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Post')
-    
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='attachments', verbose_name='Post')  # ✅ added related_name
+
     def save(self, *args, **kwargs):
         file_name = os.path.splitext(self.file.name)[0].replace('_', ' ').capitalize()
         self.name = (file_name[:50] + '...') if len(file_name) > 50 else file_name
@@ -77,14 +116,21 @@ class PostAttachment(models.Model):
         verbose_name = 'Image'
         verbose_name_plural = 'Images'
 
-<<<<<<< Updated upstream
-    objects = models.Manager()
-
-    @classmethod
-    def get_apartments(cls):
-        return cls.objects.filter(category=Category.APARTMENTS)
-=======
     def __str__(self):
         return f'Image "{self.name}" for post "{self.post.title}"'
 
->>>>>>> Stashed changes
+class Booking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    property_post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    is_paid = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        num_days = (self.end_date - self.start_date).days
+        if num_days < 1:
+            num_days = 1  
+        self.total_price = num_days * self.property_post.price_per_day
+        super().save(*args, **kwargs)

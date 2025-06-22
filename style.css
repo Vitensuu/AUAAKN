@@ -1,0 +1,267 @@
+/* Общие стили */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка (top-bar) */
+.top-bar {
+    background-color: #797db0; /* Цвет верхней полосы */
+    color: #fff;
+    padding: 10px 0;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-info span {
+    margin-right: 20px;
+}
+
+.user-actions a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+/* Навигация (main-nav) */
+.main-nav {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+}
+
+.main-nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.search-bar {
+    display: flex;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-bar button[type="submit"] {
+    background-color: #797db0; /* Цвет кнопки поиска */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Секция Hero */
+.hero {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-left {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.hero-right {
+    flex: 1;
+    position: relative;
+}
+
+.hero-left .subtitle {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.hero-left .title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.hero-left .description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hero-left .button {
+    display: inline-block;
+    background-color: #797db0; /* Цвет кнопки "Shop Now" */
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.hero-right .image-container {
+    position: relative;
+}
+
+.hero-right img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px; /* Можно добавить скругление углов */
+}
+
+.hero-right .sale-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #000; /* Цвет бейджа "50% off" */
+    color: #fff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Подвал (main-footer) */
+.main-footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+.footer {
+    background-color: #111;
+    color: white;
+    padding: 60px 20px 20px 20px;
+    font-size: 14px;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .footer-column {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .footer-column h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .footer-column p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-column ul li a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .social-icons a {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .social-icons img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .subscribe-form {
+    margin-top: 10px;
+    display: flex;
+  }
+
+  .subscribe-form input {
+    padding: 10px;
+    border: none;
+    border-radius: 3px 0 0 3px;
+    flex: 1;
+  }
+
+  .subscribe-form button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+  }

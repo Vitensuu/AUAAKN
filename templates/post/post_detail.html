@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Post Det{{ post.title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'post_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<main>
+    <section class="listing-view-container">
+        <div class="listing-header">
+            <h1 class="welcome-text">Welcome, {{ user.first_name }}</h1>
+            <p class="date-text">{{ post.created_at|date:"D, d M Y" }}</p>
+        </div>
+
+        <div class="listing-content-wrapper">
+            <div class="listing-image-gallery">
+                {% if attachments %}
+                    <img src="{{ attachments.0.file.url }}" alt="Main Image" class="main-listing-image">
+                {% else %}
+                    <img src="https://via.placeholder.com/600x350/8e44ad/ffffff?text=No+Image" alt="No Image" class="main-listing-image">
+                {% endif %}
+                <div class="image-pagination">
+                    <span class="active"></span><span></span><span></span>
+                </div>
+            </div>
+
+            <div class="listing-summary-info">
+                <h2 class="listing-card-title">{{ post.title }}</h2>
+                <div class="rating">★★★★★ ({{ post.ratings.count }})</div>
+                <p class="daily-price">{{ post.price_per_day }} KZT/day</p>
+                <p class="location-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M12 2..."/></svg>
+                    {{ post.street_or_district }}, {{ post.city.name }}
+                </p>
+                <p class="location-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path d="M20 6h-4V4..."/></svg>
+                    Near business center
+                </p>
+                <p class="monthly-price-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path d="M12 1.5..."/></svg>
+                    {{ post.price_per_month }} KZT / month
+                </p>
+
+                <div class="contact-info-section">
+                    <h3>Contact Information:</h3>
+                    <div class="contact-item">
+                        📞 Phone: {{ post.author.phone|default:"+7 777 123 45 67" }}
+                    </div>
+                    <div class="contact-item">
+                        📧 Email: {{ post.author.email|default:"example@example.com" }}
+                    </div>
+                    <div class="contact-item">
+                        📍 <a href="#" style="color: #555;">View on Map</a>
+                    </div>
+                </div>
+
+                <div class="listing-actions">
+                    {% if user.is_authenticated %}
+                        {% if is_favorite %}
+                            <button disabled>In Favorites</button>
+                        {% else %}
+                            <form method="post" action="{% url 'add_favorite' post.id %}">
+                                {% csrf_token %}
+                                <button class="add-to-favorites-btn">Add to Favorites</button>
+                            </form>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'login' %}">Log in to add to favorites</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="listing-details-grid">
+            <div class="info-item"><span class="info-label">Author:</span> <span>{{ post.author.get_full_name }}</span></div>
+            <div class="info-item"><span class="info-label">Created:</span> <span>{{ post.created_at|date:"d.m.Y H:i" }}</span></div>
+            <div class="info-item"><span class="info-label">Active:</span> <span>{{ post.is_active|yesno:"Yes,No" }}</span></div>
+            <div class="info-item"><span class="info-label">Price per month:</span> <span>{{ post.price_per_month }} KZT</span></div>
+            <div class="info-item"><span class="info-label">Price per day:</span> <span>{{ post.price_per_day }} KZT</span></div>
+            <div class="info-item"><span class="info-label">Rooms:</span> <span>{{ post.rooms }}</span></div>
+            <div class="info-item"><span class="info-label">Floor:</span> <span>{{ post.floor }} of {{ post.total_floors }}</span></div>
+            <div class="info-item"><span class="info-label">Total area:</span> <span>{{ post.area_total }} m²</span></div>
+            <div class="info-item"><span class="info-label">Living area:</span> <span>{{ post.area_living }} m²</span></div>
+            <div class="info-item"><span class="info-label">Kitchen area:</span> <span>{{ post.area_kitchen }} m²</span></div>
+            <div class="info-item"><span class="info-label">Address:</span> <span>{{ post.city.name }}, {{ post.street_or_district }}, bld. {{ post.house_number }}{% if post.apartment_number %} apt. {{ post.apartment_number }}{% endif %}{% if post.intercom_code %} (intercom: {{ post.intercom_code }}){% endif %}</span></div>
+        </div>
+
+        <div class="description-section">
+            <h3>Description</h3>
+            <p>{{ post.description|linebreaks }}</p>
+        </div>
+
+        <div class="map-section">
+            <h3>Location on Map</h3>
+            <div id="map" style="width: 100%; height: 400px;"></div>
+        </div>
+    </section>
+</main>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script>
+<script>
+    ymaps.ready(function () {
+        var coords = [{{ post.latitude|default:"51.1324" }}, {{ post.longitude|default:"71.4304" }}];
+        var map = new ymaps.Map("map", {
+            center: coords,
+            zoom: 14
+        });
+        var placemark = new ymaps.Placemark(coords, {
+            balloonContent: "{{ post.title|escapejs }}"
+        });
+        map.geoObjects.add(placemark);
+    });
+</script>
+
+<!-- Rating Section -->
+<h3>Rate This Listing</h3>
+<form method="post" action="{% url 'add_rating' post.id %}">
+    {% csrf_token %}
+    {{ rating_form.as_p }}
+    <button type="submit">Submit Rating</button>
+</form>
+
+{% if post.average_rating %}
+<p><strong>Average Rating:</strong> {{ post.average_rating }}</p>
+{% endif %}
+
+
+<h2>Book: {{ post.title }}</h2>
+<form method="post" action="{% url 'book_property' post.id %}">
+    {% csrf_token %}
+    {{ booking_form.as_p }}
+    <button type="submit">Book</button>
+</form>
+
+
+{% if user == post.author %}
+    <a href="{% url 'edit_post' post.id %}">Edit Post</a>
+{% endif %}
+
+{% endblock %}

@@ -1,52 +1,123 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}{% endblock %}</title>
-	    <meta charset="utf-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/base.css')}}">
-	    {% block script %}{% endblock %}
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Domvio Rentals{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
-        {% block header %}{% endblock %}
-            <nav class="sideNavbar">
-                <ul id="checklist">
-                    <li class="menu" id="admin"><a class="logo" href="/AdminDashboard">
-                        <i class="fa-solid fa-user-tie" style="font-size:24px"></i>
-                        <span class="nav-item">Admin Dashboard</span>
-                        <i class="fa-solid fa-bars" id="menu-bars" style="font-size:24px; padding-left: 26px;"></i></a>
-                    </li>
-                    <li class="menu"><a href="/TotalUsers">
-                        <i class="fa-solid fa-users" style="font-size:24px"></i>
-                        <span class="nav-item" id="usr">Users</span>
-                    </a></li>
-                    <li class="menu"><a href="/tenantReport">
-                        <i class="fa-solid fa-users" style="font-size:24px"></i>
-                        <span class="nav-item">Tenants</span>
-                    </a></li>
-                    <li class="menu"><a href="/ApartmentRooms">
-                        <i class="fa-solid fa-building" style="font-size:22px"></i>
-                        <span class="nav-item">Apartment Rooms</span>
-                    </a></li>
-                    <li class="menu"><a href="/RentStatus">
-                        <i class="fa-sharp fa-solid fa-coins" style="font-size:24px"></i>
-                        <span class="nav-item">Rent Status</span>
-                    </a></li>
-                    <li class="menu"><a href="/Backup">
-                        <i class="fa-solid fa-database" style="font-size:24px"></i>
-                        <span class="nav-item">Back Up Status</span>
-                    </a></li>
-                    <li class="logout"><a href="/AdminLogout">
-                        <i class="fa-solid fa-sign-out-alt" style="font-size:24px"></i>
-                        <span class="nav-item">Logout</span>
-                    </a></li>
-                </ul>
-            </nav>
-            {% block content %}
-            {% endblock %}
-    		
-    	{% block endscript %}
-        {% endblock%}
-    	
-    </body>
+  <header class="top-bar">
+    <nav class="main-nav">
+      <div class="container main-nav-content">
+        <a href="{% url 'main_page' %}" class="logo">Domvio</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+            <button type="submit">Search</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'post_list' %}" class="btn">Rentals</a></li>
+            <li><a href="#">🔔</a></li>
+            <li></li>
+            
+            {% if user.is_authenticated %}
+            <li class="user-profile-container">
+              <button id="accountTrigger" onclick="toggleDropdown()" class="user-name" >{{user.first_name}} {{user.last_name}}</button>
+              <div id="accountDropdown" class="dropdown-content">
+                <a class="dropdown-category-toggle" onclick="toggleSubmenu(event, 'tenantSubmenu')">Tenant Account</a>
+                <div id="tenantSubmenu" class="submenu-content">
+                  <a href="#">Favorites</a>
+                  <a href="#">My Rentals</a>
+                  <a href="#">Rental History</a>
+                  <a href="#">Payment History</a>
+                </div>
+              <a href="#" class="dropdown-category-toggle" onclick="toggleSubmenu(event, 'landlordSubmenu')">Landlord Account</a>
+                <div id="landlordSubmenu" class="submenu-content">
+                  <a href="#">My Listings</a>
+                  <a href="#">Lease History</a>
+                  <a href="#">Top-Up History</a>
+                </div>
+              <a href="#" class="dropdown-category-toggle" onclick="toggleSubmenu(event, 'walletSubmenu')">Wallet</a>
+                <div id="walletSubmenu" class="submenu-content">
+                  <a href="{% url 'wallet:wallet_balance' %}">Balance: {{ request.user.wallet.balance }}</a>
+                  <a href="{% url 'wallet:create_token' %}">Top Up</a>
+                  <a href="#">Withdraw</a>  {# Если этого представления нет, просто убери ссылку или оставь заглушку #}
+                  <a href="#">Transaction History</a>  {# Аналогично #}
+                </div>
+              <a href="#">General</a>
+              <a href="#">Messages</a>
+              <a href="#">Settings</a>
+              <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+              </div>
+            </li>
+            {% else %}
+            <li><a href="{% url 'register' %}" class="btn">Register</a></li>
+            <li>|</li>
+            <li><a href="{% url 'login' %}" class="btn">Login</a></li>
+            {% endif %} 
+        </ul>
+        
+      </div>
+    </nav>
+  
+
+  </header>
+  <main>
+  {% block content %}
+  {% endblock content %}
+  </main>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>INFORMATION</h3>
+        <p>
+          Welcome to our rental platform — your trusted place to find and book apartments across
+          Kazakhstan.
+        </p>
+        <p>
+          We offer a wide range of verified listings in different cities, with flexible terms and
+          secure payments.
+        </p>
+        <div class="social-icons">
+          <a href="#"><img src="facebook-icon.png" alt="Facebook" /></a>
+          <a href="#"><img src="twitter-icon.png" alt="Twitter" /></a>
+          <a href="#"><img src="instagram-icon.png" alt="Instagram" /></a>
+          <a href="#"><img src="linkedin-icon.png" alt="LinkedIn" /></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>NAVIGATION</h3>
+        <ul>
+          <li><a href="#">Homepage</a></li>
+          <li><a href="#">Properties</a></li>
+          <li><a href="#">Bookings</a></li>
+          <li><a href="#">Messages</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>CONTACT US</h3>
+        <p>Manasa IITU</p>
+        <p>nurasmitzh@gmail.com</p>
+        <form class="subscribe-form">
+          <input type="email" placeholder="Email Address" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>ALLRIGHT RESERVED - HOMCO INTERIOR</p>
+      <div class="footer-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Term of Use</a>
+      </div>
+    </div>
+  </footer>
+</body>
 </html>

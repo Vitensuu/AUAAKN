@@ -1,0 +1,104 @@
+/* Стили для ошибок формы */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 20px;
+}
+
+.login-card {
+    background-color: #212121;
+    color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    max-width: 100%;
+}
+
+.login-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.login-subtitle {
+    color: #bdbdbd;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.form-errors, .error {
+    color: #ff6b6b;
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+/* Если Django добавит класс ошибки к полю */
+input.is-invalid, input.error {
+    border: 1px solid #ff6b6b;
+}
+
+/* Сброс стилей label от Django */
+.login-form label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Чтобы все поля от Django form выглядели как твои поля */
+.login-form input {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #424242;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* Поддержка autofill от браузера */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #424242 inset;
+    -webkit-text-fill-color: #fff;
+}
+
+/* Стили для кнопки — чуть улучшим */
+.login-button {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    background-color: #797db0;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;   
+    display: block;
+
+}
+
+.login-button:hover {
+    background-color: #6a6ea0;
+}
+
+.forgot-password {
+    display: inline-block;
+    font-size: 0.8em;        /* маленький шрифт */
+    color: #ffffff;          /* белый цвет */
+    text-decoration: none;   /* убираем подчёркивание */
+    margin-top: 8px;
+    align-self: flex-end;    /* если flex-контейнер */
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: #ddd; /* светлее при наведении */
+}

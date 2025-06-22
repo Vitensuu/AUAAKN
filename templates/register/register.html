@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Registration{% endblock %}
+{% block extra_css %} <link rel="stylesheet" href="{% static 'register.css' %}"> {% endblock %}
+{% block content %}
+
+<div class="register-container">
+    {% if form.errors %}
+    <div class="form-errors">
+        {{ form.errors }}
+    </div>
+    {% endif %}
+        <div class="register-card">
+            <h2 class="register-title">Create an Account</h2>
+            <p class="register-subtitle">Create a new account to continue</p>
+            <form class="register-form" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{form.first_name}}
+                </div>
+                
+                <div class="form-group">
+                    {{form.last_name}}
+                </div>
+                
+                <div class="form-group">
+                    {{form.email}}
+                </div>
+                
+                <div class="form-group">
+                    {{form.phone}}
+                </div>
+                
+                <div class="form-group password-group">
+                    {{form.password1}}
+                </div>
+                
+                <div class="form-group password-group">
+                    {{form.password2}}
+                </div>
+                
+                <button type="submit" class="register-button"> Save </button>
+            </form>
+            <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+</div>
+{% endblock content %}

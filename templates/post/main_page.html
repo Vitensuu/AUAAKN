@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Domvio Rentals{% endblock %}
+{% block content %}
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-left">
+                <span class="subtitle">Real Estate Manage Rentals</span>
+                <h1 class="title">Manage Your Rentals With Ease And Confidence</h1>
+                <p class="description">Find Your Ideal Rental — Fast, Easy, Secure</p>
+                <a href="{% url 'post_list' %}" class="button">Find a Home</a>
+            </div>
+            <div class="hero-right">
+                <div class="image-container">
+                    <img src="/static/img/hh-removebg-preview3.png" alt="Modern House">
+                    <div class="sale-badge">50% off</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock content %}

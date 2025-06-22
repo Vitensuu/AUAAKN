@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Token{% endblock %}
+{% block content %}
+<h2>Your tokem are created!</h2>
+<p>Summ: <strong>{{ token.amount }}₽</strong></p>
+<p>Token (amount): <code>{{ token.token }}</code></p>
+<p>Use this token to confirm</p>
+<a href="{% url 'wallet:confirm_token' %}">Go to confirmation</a>
+{% endblock content %}

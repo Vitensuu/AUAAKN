@@ -1,0 +1,128 @@
+/* Стили для страницы регистрации */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Занимает всю высоту экрана */
+    background: #ffffff; /* Пример градиентного фона */
+    padding: 20px;
+}
+
+.register-card {
+    background-color: #212121; /* Темный фон карточки */
+    color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 400px; /* Примерная ширина карточки */
+    max-width: 100%;
+}
+
+.register-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.register-subtitle {
+    color: #bdbdbd;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #424242;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+.input-style {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #424242;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.password-group {
+    position: relative;
+}
+
+.forgot-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #bdbdbd;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+
+.forgot-password:hover {
+    color: #fff;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checkbox-group label {
+    color: #e0e0e0;
+}
+
+.register-button {
+    background-color: #797db0; /* Примерный цвет кнопки */
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #5e6391;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #bdbdbd;
+}
+
+.login-link a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+a{
+    text-decoration: none;
+}

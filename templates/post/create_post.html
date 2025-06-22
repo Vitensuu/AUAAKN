@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Create Post{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Create new post</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="mb-3">
+            {{ form.title.label_tag }}<br>
+            {{ form.title }}
+            {{ form.title.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.description.label_tag }}<br>
+            {{ form.description }}
+            {{ form.description.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.price_per_month.label_tag }}<br>
+            {{ form.price_per_month }}
+            {{ form.price_per_month.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.city.label_tag }}<br>
+            {{ form.city }}
+            {{ form.city.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.street_or_district.label_tag }}<br>
+            {{ form.street_or_district }}
+            {{ form.street_or_district.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.house_number.label_tag }}<br>
+            {{ form.house_number }}
+            {{ form.house_number.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.apartment_number.label_tag }}<br>
+            {{ form.apartment_number }}
+            {{ form.apartment_number.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.intercom_code.label_tag }}<br>
+            {{ form.intercom_code }}
+            {{ form.intercom_code.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.rooms.label_tag }}<br>
+            {{ form.rooms }}
+            {{ form.rooms.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.floor.label_tag }}<br>
+            {{ form.floor }}
+            {{ form.floor.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.total_floors.label_tag }}<br>
+            {{ form.total_floors }}
+            {{ form.total_floors.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.area_total.label_tag }}<br>
+            {{ form.area_total }}
+            {{ form.area_total.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.area_living.label_tag }}<br>
+            {{ form.area_living }}
+            {{ form.area_living.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.area_kitchen.label_tag }}<br>
+            {{ form.area_kitchen }}
+            {{ form.area_kitchen.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.latitude.label_tag }}<br>
+            {{ form.latitude }}
+            {{ form.latitude.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.longitude.label_tag }}<br>
+            {{ form.longitude }}
+            {{ form.longitude.errors }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.is_active.label_tag }}<br>
+            {{ form.is_active }}
+            {{ form.is_active.errors }}
+        </div>
+
+        <div class="mb-3">
+            <label for="attachments">Фотографии:</label>
+            <input type="file" name="attachments" multiple>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+</div>
+{% endblock %}

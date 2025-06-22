@@ -1,0 +1,532 @@
+/* Общие стили */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+main {
+  margin-left: 20px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Шапка (top-bar) */
+.top-bar {
+  background-color: #797db0; /* Цвет верхней полосы */
+  color: #fff;
+  padding: 10px 0;
+}
+
+.top-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-info span {
+  margin-right: 20px;
+}
+
+.user-actions a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+/* Навигация (main-nav) */
+.main-nav {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px 0;
+  align-items: center;     /* выравнивание по вертикали */
+  justify-content: center;
+}
+
+.main-nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.search-bar {
+  display: flex;
+}
+
+.search-bar input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+.search-bar button[type="submit"] {
+  background-color: #797db0; /* Цвет кнопки поиска */
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Секция Hero */
+.hero {
+  padding: 50px 0;
+  background-color: #f9f9f9;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-left {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.hero-right {
+  flex: 1;
+  position: relative;
+}
+
+.hero-left .subtitle {
+  color: #777;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.hero-left .title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.hero-left .description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero-left .button {
+  display: inline-block;
+  background-color: #797db0; /* Цвет кнопки "Shop Now" */
+  color: #fff;
+  padding: 15px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.hero-right .image-container {
+  position: relative;
+}
+
+.hero-right img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px; /* Можно добавить скругление углов */
+}
+
+.hero-right .sale-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #000; /* Цвет бейджа "50% off" */
+  color: #fff;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Подвал (main-footer) */
+.main-footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+}
+
+.footer {
+  background-color: #111;
+  color: white;
+  padding: 60px 20px 20px 20px;
+  font-size: 14px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-column h3 {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.footer-column p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-icons img {
+  width: 20px;
+  height: 20px;
+}
+
+.subscribe-form {
+  margin-top: 10px;
+  display: flex;
+}
+
+.subscribe-form input {
+  padding: 10px;
+  border: none;
+  border-radius: 3px 0 0 3px;
+  flex: 1;
+}
+
+.subscribe-form button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input[type="text"] {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-bar button {
+  background-color: #8e44ad; /* Purple button */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #9b59b6;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: opacity 0.3s ease;
+}
+
+nav ul li a:hover {
+  opacity: 0.8;
+}
+
+/* Container for account button and dropdown menu */
+.user-profile-container {
+  position: relative; /* Important: for correct positioning of dropdown-content */
+  display: inline-block; /* So the container takes only necessary space */
+  margin-left: 20px; /* Spacing from previous element */
+}
+
+.user-name {
+  color: #333;
+  text-decoration: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: 600;
+  background-color: transparent; /* Ensure no default background */
+  border: none; /* Remove border if it's a button */
+  font-size: 15px;
+}
+
+/* Styles for the dropdown menu */
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: #f9f9f9; /* Light background */
+  min-width: 250px; /* Minimum width */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow */
+  z-index: 1000; /* To ensure menu is above other elements */
+  right: 0; /* Align to the right edge of the parent container */
+  top: calc(100% + 10px); /* Position below "Ulzhan Absattar" with a small gap */
+  border-radius: 5px; /* Rounded corners */
+  overflow: hidden; /* For rounded corners to work with inner elements */
+  border: 1px solid #ddd; /* Thin border */
+}
+
+/* Styles for links inside the dropdown menu */
+.dropdown-content a {
+  color: black;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px; /* Smaller font size */
+  border-bottom: 1px solid #eee; /* Separator between items */
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none; /* Remove border from the last item */
+}
+
+/* Styles on hover for menu items */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Styles for category headers that are now links/buttons */
+.dropdown-category-toggle {
+  padding: 10px 16px;
+  font-weight: bold;
+  color: #333;
+  background-color: #e9e9e9; /* Light background for headers */
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  cursor: pointer; /* Indicates it's clickable */
+  display: flex; /* For the arrow icon */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-category-toggle:hover {
+  background-color: #e0e0e0;
+}
+
+.dropdown-category-toggle::after {
+  content: '▶'; /* Arrow icon */
+  font-size: 10px;
+  margin-left: 10px;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-category-toggle.active::after {
+  transform: rotate(90deg); /* Rotate arrow when active */
+}
+
+/* Styles for nested submenus */
+.submenu-content {
+  display: none; /* Hidden by default */
+  background-color: #f9f9f9; /* Same background or slightly lighter */
+  padding-left: 0; /* Remove default div padding */
+}
+
+/* Styles for links within submenus */
+.submenu-content a {
+  padding-left: 30px; /* Indent for sub-items */
+  border-top: none; /* Remove extra top border */
+  border-bottom: 1px solid #eee; /* Separator between sub-items */
+}
+
+.submenu-content a:last-child {
+  border-bottom: none; /* Remove border from the last submenu item */
+}
+
+/* Class to show submenu */
+.submenu-content.show {
+  display: block;
+}
+
+/* Styles for "Logout" button */
+.logout-link {
+  color: #d9534f !important; /* Red color */
+  font-weight: bold;
+}
+
+.logout-link:hover {
+  background-color: #fdd !important;
+}
+
+/* Class to show the main dropdown menu */
+.show {
+  display: block;
+}
+
+
+
+/* Responsiveness */
+@media (max-width: 992px) {
+  .hero-content {
+      padding-right: 0;
+      text-align: center;
+      margin-bottom: 40px;
+  }
+  .hero-image {
+      text-align: center;
+  }
+  .hero-section {
+      flex-direction: column;
+  }
+  footer {
+      justify-content: center;
+      text-align: center;
+  }
+  footer div {
+      min-width: unset;
+      width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px 20px;
+  }
+  .search-bar {
+      margin-top: 15px;
+      width: 100%;
+      justify-content: center;
+  }
+  .search-bar input[type="text"] {
+      flex-grow: 1;
+  }
+  nav ul {
+      flex-direction: column;
+      margin-top: 15px;
+      width: 100%;
+      align-items: flex-start;
+  }
+  nav ul li {
+      margin-left: 0;
+      margin-bottom: 10px;
+  }
+  .user-profile-container {
+      margin-left: 0;
+      margin-top: 15px;
+      width: 100%;
+      text-align: center;
+  }
+  .user-name {
+      display: block; /* To take full width */
+  }
+  .dropdown-content {
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 90%; /* Allows dropdown to take almost full width */
+  }
+  .hero-content h1 {
+      font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+      font-size: 28px;
+  }
+  .hero-content p {
+      font-size: 16px;
+  }
+  .discount-badge {
+      width: 60px;
+      height: 60px;
+      font-size: 14px;
+      top: 10px;
+      right: 10px;
+  }
+}

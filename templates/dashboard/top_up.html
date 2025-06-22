@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Top Up{% endblock %}
+{% block content %}
+<h2>Top Up Balance</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Create Token</button>
+</form>
+{% endblock content %}

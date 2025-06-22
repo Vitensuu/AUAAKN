@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Post List{% endblock %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'post_list.css' %}">
+{% endblock %}
+{% block content %}
+<form method="get" class="filter-form">
+  <label>Цена от:
+    <input type="number" name="price_min" value="{{ request.GET.price_min }}">
+  </label>
+
+  <label>Цена до:
+    <input type="number" name="price_max" value="{{ request.GET.price_max }}">
+  </label>
+
+  <label>Количество комнат:
+    <select name="rooms">
+      <option value="">Любое</option>
+      {% for i in room_choices %}
+        <option value="{{ i }}" {% if request.GET.rooms == i|stringformat:"s" %}selected{% endif %}>{{ i }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <label>Город:
+    <select name="city">
+      <option value="">Любой город</option>
+      {% for c in cities %}
+        <option value="{{ c.name }}" {% if request.GET.city == c.name %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <label>Площадь от (м²):
+    <input type="number" step="0.1" name="area_min" value="{{ request.GET.area_min }}">
+  </label>
+
+  <label>Площадь до (м²):
+    <input type="number" step="0.1" name="area_max" value="{{ request.GET.area_max }}">
+  </label>
+
+  <label>Только с изображением:
+    <input type="checkbox" name="has_image" value="1" {% if request.GET.has_image %}checked{% endif %}>
+  </label>
+
+  <button type="submit">Поиск</button>
+</form>
+
+<h2 class="properties-title">Все доступные объявления</h2>
+{% if user.is_authenticated %}
+        <button><a href={% url 'create_post' %}>Create Post</a></button>
+{% endif %}
+<div class="properties-grid">
+    {% for post in posts %}
+        <div class="property-card">
+            <a href="{% url 'post_detail' post.id %}">
+                {% if post.attachments.first %}
+                    <img src="{{ post.attachments.first.file.url }}" alt="{{ post.title }}">
+                {% else %}
+                    <img src="{% static 'img/default.png' %}" alt="No image">
+                {% endif %}
+
+                <div class="property-details">
+                    <h3>{{ post.title }}</h3>
+                    <span class="price">₸{{ post.price_per_month }}</span>
+                    <p class="address">
+                        {% if post.city %}
+                            {{ post.city.name }}{% if post.street_or_district %}, {{ post.street_or_district }}{% endif %}
+                        {% else %}
+                            {{ post.street_or_district }}
+                        {% endif %}
+                    </p>
+                </div>
+            </a>
+        </div>
+    {% empty %}
+        <p>Объявлений пока нет.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
